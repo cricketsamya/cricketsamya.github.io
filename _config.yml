@@ -10,7 +10,7 @@ name                     : "Sameer"
 description              : "This is my personal space, where I would love share my experience and my knowledge. I am a Senior Software Engineer working at Tignum GmbH since 2018. I have 10+ years of Java Stack experience."
 url                      : "https://cricketsamya.github.io"
 baseurl                  : ""
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "cricketsamya/cricketsamya.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : #"/assets/images/apple-touch-icon.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "My Personal Space" # overrides the website title displayed in the masthead, use " " for no title
