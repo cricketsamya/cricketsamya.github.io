@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-19T17:07:23+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Personal Space</title><subtitle>This is my personal space, where I would love share my experience and my knowledge. I am a Senior Software Engineer working at Tignum GmbH since 2018. I have 10+ years of Java Stack experience.</subtitle><author><name>Sameer</name></author><entry><title type="html">How to configure Dependabot with Gradle</title><link href="http://localhost:4000/posts/dependabot-with-gradle/" rel="alternate" type="text/html" title="How to configure Dependabot with Gradle" /><published>2021-10-19T00:00:00+02:00</published><updated>2021-10-19T00:00:00+02:00</updated><id>http://localhost:4000/posts/dependabot-with-gradle</id><content type="html" xml:base="http://localhost:4000/posts/dependabot-with-gradle/">&lt;h2 id=&quot;what-is-a-github-dependabot&quot;&gt;What is a Github Dependabot?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dependabot.com/&quot;&gt;Dependabot&lt;/a&gt; provides a way to keep your dependencies up to date. Depending on the configuration, it checks your dependency files for outdated dependencies and opens PRs individually. Then based on requirement PRs can be reviewed and merged.&lt;/p&gt;
+
+&lt;h2 id=&quot;dependabot-with-gradle&quot;&gt;Dependabot with Gradle&lt;/h2&gt;
+
+&lt;p&gt;Dependabot has a limited &lt;a href=&quot;https://dependabot.com/blog/gradle-support/&quot;&gt;support&lt;/a&gt; for Gradle. Dependabot looks for a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; or a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; in your repo, then scans for outdated dependencies and creates a PR based on available updates.&lt;/p&gt;
+
+&lt;h3 id=&quot;issue&quot;&gt;Issue&lt;/h3&gt;
+
+&lt;p&gt;The issue aries when dependencies are maintained outside of these two files. Dependabot ONLY and ONLY scans &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt;. Most of the projects would follow this standard of having versions in these files, but remaining ones wont work at all.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution&quot;&gt;Solution&lt;/h3&gt;
+
+&lt;p&gt;There is a &lt;strong&gt;workaround&lt;/strong&gt; to this issue. Follow the steps explained below to tackle this issue.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies.gradle&lt;/code&gt; file to extract all the dependencies. The file name HAS TO BE &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies.gradle&lt;/code&gt;, otherwise the solution will not work. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;version.gradle&lt;/code&gt; is also not supported!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// -- PLUGINS&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;springBootVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;2.5.5&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;springDependencyManagementVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1.0.11.RELEASE&quot;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//-- DEPENDENCIES&lt;/span&gt;
+	 &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;  
+	 &lt;span class=&quot;n&quot;&gt;springFoxBootVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;3.0.0&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hibernateVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;5.4.31.Final&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;c3p0Version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;0.9.5.5&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;postgresVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;42.2.10&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;springfox_boot_starter&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;io.springfox:springfox-boot-starter:$springFoxBootVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;hibernate_entitymanager&lt;/span&gt;           &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.hibernate:hibernate-entitymanager:$hibernateVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;hibernate_core&lt;/span&gt;                    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.hibernate:hibernate-core:$hibernateVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c3p0&lt;/span&gt;                              &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.mchange:c3p0:$c3p0Version&quot;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;hibernate_java8&lt;/span&gt;                   &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.hibernate:hibernate-java8:$hibernateVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;postgresql&lt;/span&gt;                        &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.postgresql:postgresql:$postgresVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'dependencies.gradle'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plugins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.springframework.boot'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;${springBootVersion}&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'io.spring.dependency-management'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;${springDependencyManagementVersion}&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;springfox_boot_starter&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hibernate_entitymanager&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hibernate_core&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;c3p0&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add dependabot support with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github/dependabot.yml&lt;/code&gt; file to the project.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;updates&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;package-ecosystem&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gradle&quot;&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/&quot;&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;daily&quot;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tadaaaa.. On the next run or on a force run of dependency check, if there are updates you should see PRs opened by dependabot.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Dependabot is an amazing tool, to make sure your project gets latest dependencies. But the support of Gradle as compared to Maven is limited when dependencies are not maintained &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you dont want to maintain the versions in these two files, you can tweak your gradle files in a way that dependabot can scan the project and will find out the issues with the dependencies.&lt;/p&gt;
+
+&lt;p&gt;Special Thanks to &lt;a href=&quot;https://github.com/sumedhdeshpande&quot;&gt;Sumedh&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dependabot.com/blog/gradle-support/&quot;&gt;Dependabot&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dependabot/dependabot-core&quot;&gt;Dependabot Code Repo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="dependabot" /><category term="gradle" /><category term="github" /><category term="dependency" /><summary type="html">What is a Github Dependabot?</summary></entry><entry><title type="html">Post: First Post</title><link href="http://localhost:4000/posts/first-post/" rel="alternate" type="text/html" title="Post: First Post" /><published>2021-10-18T00:00:00+02:00</published><updated>2021-10-18T00:00:00+02:00</updated><id>http://localhost:4000/posts/first-post</id><content type="html" xml:base="http://localhost:4000/posts/first-post/">&lt;blockquote&gt;
+  &lt;p&gt;Welcome to my world!&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="first" /><category term="firstpost" /><category term="firstposts" /><summary type="html">Welcome to my world!</summary></entry></feed>

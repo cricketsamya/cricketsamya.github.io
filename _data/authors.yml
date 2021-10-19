@@ -1,0 +1,26 @@
+# Authors
+
+Sameer Kulkarni:
+  name        : "Sameer Kulkarni"
+  bio         : "I am Java Lover"
+  #avatar      : "/assets/images/bio-photo-2.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:cricketsamya@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://cricketsamya.github.io"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/cricketsamya"  
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/sameerkulkarni30/"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://instagram.com/sameer_travelphotography/"      
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/cricketsamya"
+      
