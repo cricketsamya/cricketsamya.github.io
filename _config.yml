@@ -76,8 +76,9 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/cricketsamya"
-
-
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:mail@sameerkulkarni.de"
 
 
 # Site Footer
@@ -94,6 +95,9 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/cricketsamya"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:mail@sameerkulkarni.de"
 
 
 # Reading Files
