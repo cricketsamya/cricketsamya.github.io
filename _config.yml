@@ -224,13 +224,7 @@ compress_html:
 
 # Collections
 collections:
-  recipes:
-    output: true
-    permalink: /:collection/:path/
-  pets:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
+  cv:
     output: true
     permalink: /:collection/:path/
 
@@ -247,4 +241,11 @@ defaults:
       read_time: true
       share: true
       related: true
-
+  # _cv
+  - scope:
+      path: ""
+      type: cv
+    values:
+      layout: single
+      author_profile: false
+      share: true

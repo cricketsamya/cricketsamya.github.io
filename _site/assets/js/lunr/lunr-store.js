@@ -10,4 +10,4 @@ var store = [{
         "tags": ["dependabot","gradle","github","dependency"],
         "url": "/posts/dependabot-with-gradle/",
         "teaser": null
-      },]
+      }]
