@@ -4,8 +4,8 @@ main:
     url: https://github.com/cricketsamya
   - title: "Posts"
     url: /year-archive/
-  #- title: "Collections"
-  #  url: /collection-archive/
+  - title: "CV"
+    url: /cv/
   #- title: "Sitemap"
   #  url: /sitemap/
   #- title: "Extra Menu Item 1"
