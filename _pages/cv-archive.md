@@ -9,7 +9,7 @@ author_profile: true
 
 # Sameer Kulkarni
 
-_Senior Software engineer based in Berlin, Germany_ <br>
+_Senior Software Engineer based in Berlin, Germany_ <br>
 
 ## 👨‍💻 Technical Experience
 
