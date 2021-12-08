@@ -21,18 +21,18 @@ author_profile: true
 Testcontainers is a JVM library that allows users to run and manage Docker images and control them from Java code.
 The integration test additionally runs external components as real Docker containers.
 
-**Databases** - Run PostgreSQL as a Docker image
-**Mocked HTTP server** - HTTP services by using MockServer or WireMock Docker images
-**Redis** - run real Redis as a Docker image,
-**Message Brokers** - RabbitMQ
-**AWS -** S3, DynamoDB etc
-Any other **application** that can be run as a Docker image
+- **Databases** - Run PostgreSQL as a Docker image
+- **Mocked HTTP server** - HTTP services by using MockServer or WireMock Docker images
+- **Redis** - run real Redis as a Docker image,
+- **Message Brokers** - RabbitMQ
+- **AWS -** S3, DynamoDB etc
+- Any other **application** that can be run as a Docker image
 
 ## How to use?
 
 - Setup : Spring Boot and Junit 5
 - Dependency to testImplementation "org.testcontainers:postgresql:1.16.2” and testImplementation "org.testcontainers:junit-jupiter:1.16.2”
-- And then some wireing () to start testcontainers and link them to the test context so that integration tests knows where to look for the containers.
+- And then some wireing to start testcontainers and link them to the test context so that integration tests knows where to look for the containers.
 
 ## Example Abstract Class for setup
 
@@ -137,7 +137,7 @@ void checkIfUserExistInIdealCase() throws Exception {
 - You run tests against real components, PostgreSQL database instead of the H2 database.
 - You can mock AWS services.
 - Implementation and tests can be written by developers same time when raising a PR.
-
+- Multiple containers can be added and it’s consistent across all developer machines. Same versions etc and runs without any efforts with GitHub actions.
 ## Disadvantages
 
 - The main limitation is, that containers cannot be reused between test classes.
