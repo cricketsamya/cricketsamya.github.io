@@ -7,7 +7,7 @@ tags:
   - gradle
   - github
   - dependency
-entries_layout: grid
+classes: wide
 taxonomy: Dependabot Gradle
 author_profile: true
 ---
