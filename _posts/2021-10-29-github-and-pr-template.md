@@ -7,7 +7,7 @@ tags:
   - pull_request
   - github
   - template
-entries_layout: grid
+classes: wide
 taxonomy: GitHub PullRequest Template
 author_profile: true
 ---
