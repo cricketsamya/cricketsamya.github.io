@@ -72,7 +72,7 @@ public abstract class AbstractBaseIntergrationTestConfiguration {
     protected static final String JDBC_USERNAME = "jdbc.username=";
     protected static final String JDBC_PASSWORD = "jdbc.password=";
     protected static final String JDBC_DRIVER_CLASS_NAME_ORG_POSTGRESQL_DRIVER = "jdbc.driverClassName=org.postgresql.Driver";
-    protected static final String ACTIVE_PROFILE_NAME_TEST = "IT";
+    protected static final String ACTIVE_PROFILE_NAME_TEST = "TestContainerTests";
 
     //--
     public static PostgreSQLContainer<?> postgreDBContainer;
