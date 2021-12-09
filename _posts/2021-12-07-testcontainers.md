@@ -118,7 +118,8 @@ public abstract class AbstractBaseIntergrationTestConfiguration {
 ```java
 @Test
 void checkIfUserExistInIdealCase() throws Exception {
-
+  final JSONObject request = new JSONObject();
+  
   request.put("email", "abc@test.com");
   
   final MockHttpServletRequestBuilder postObject = getPostRequestExecutorBuilder("http://localhost:8080/v1/checkemail/", Optional.empty());
