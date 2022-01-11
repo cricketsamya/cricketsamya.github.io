@@ -10,6 +10,10 @@ tags:
 classes: wide
 taxonomy: Dependabot Gradle
 author_profile: true
+header:
+  overlay_image: /assets/images/labyrinth-gd0618d8f1_1920.jpg
+  caption: "Photo credit: [**Pixabay**](https://pixabay.com/)"
+excerpt: ""
 ---
 
 ## What is a Github Dependabot?

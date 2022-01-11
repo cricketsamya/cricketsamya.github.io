@@ -12,10 +12,11 @@ tags:
 taxonomy: Testcontainer Java Docker
 classes: wide
 author_profile: true
+header:
+  overlay_image: /assets/images/banner-g497249795_1920.jpg
+  caption: "Photo credit: [**Pixabay**](https://pixabay.com/)"
+excerpt: ""
 ---
-
-
-
 ## What are Testcontainers?
 
 Testcontainers is a JVM library that allows users to run and manage Docker images and control them from Java code.

@@ -10,6 +10,10 @@ tags:
 classes: wide
 taxonomy: GitHub PullRequest Template
 author_profile: true
+header:
+  overlay_image: /assets/images/pocket-watch-gb37e4eb06_1920.jpg
+  caption: "Photo credit: [**Pixabay**](https://pixabay.com/)"
+excerpt: ""
 ---
 
 ## Why do you need a Pull Request Template?
