@@ -1,0 +1,762 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to configure Dependabot with Gradle - My Personal Space 🛰️</title>
+<meta name="description" content="This is my personal space 🛰️, where I would love share my experience and my knowledge. Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.">
+
+
+  <meta name="author" content="Sameer">
+  
+  <meta property="article:author" content="Sameer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="My Personal Space 🛰️">
+<meta property="og:title" content="How to configure Dependabot with Gradle">
+<meta property="og:url" content="https://cricketsamya.github.io/posts/dependabot-with-gradle/">
+
+
+  <meta property="og:description" content="This is my personal space 🛰️, where I would love share my experience and my knowledge. Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.">
+
+
+
+  <meta property="og:image" content="https://cricketsamya.github.io/assets/images/labyrinth-gd0618d8f1_1920.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-19T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://cricketsamya.github.io/posts/dependabot-with-gradle/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Sameer",
+      "url": "https://cricketsamya.github.io/",
+      "sameAs": ["https://twitter.com/","https://github.com/"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="My Personal Space 🛰️ Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon//apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon//favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon//site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          My Personal Space 🛰️
+          <span class="site-subtitle">Get to know me!</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://github.com/cricketsamya">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/assets/images/labyrinth-gd0618d8f1_1920.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          How to configure Dependabot with Gradle
+
+        
+      </h1>
+      
+        <p class="page__lead">
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Photo credit: <a href="https://pixabay.com/"><strong>Pixabay</strong></a>
+</span>
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://cricketsamya.github.io/">
+        <img src="/assets/images/bio-photo.png" alt="Sameer" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://cricketsamya.github.io/" itemprop="url">Sameer</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Berlin, Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cricketsamya" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/sameerkulkarni30/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/sameer_travelphotography/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/cricketsamya" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="mailto:mail@sameerkulkarni.de" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to configure Dependabot with Gradle">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-10-19T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="what-is-a-github-dependabot">What is a Github Dependabot?</h2>
+
+<p><a href="https://dependabot.com/">Dependabot</a> provides a way to keep your dependencies up to date. Depending on the configuration, it checks your dependency files for outdated dependencies and opens PRs individually. Then based on requirement PRs can be reviewed and merged.</p>
+
+<h2 id="dependabot-with-gradle">Dependabot with Gradle</h2>
+
+<p>Dependabot has a limited <a href="https://dependabot.com/blog/gradle-support/">support</a> for Gradle. Dependabot looks for a <code class="language-plaintext highlighter-rouge">build.gradle</code> or a <code class="language-plaintext highlighter-rouge">settings.gradle</code> in your repo, then scans for outdated dependencies and creates a PR based on available updates.</p>
+
+<h3 id="issue">Issue</h3>
+
+<p>The issue aries when dependencies are maintained outside of these two files. Dependabot ONLY and ONLY scans <code class="language-plaintext highlighter-rouge">build.gradle</code> or <code class="language-plaintext highlighter-rouge">settings.gradle</code>. Most of the projects would follow this standard of having versions in these files, but remaining ones wont work at all.</p>
+
+<h3 id="solution">Solution</h3>
+
+<p>There is a <strong>workaround</strong> to this issue. Follow the steps explained below to tackle this issue.</p>
+
+<ul>
+  <li>Create <code class="language-plaintext highlighter-rouge">dependencies.gradle</code> file to extract all the dependencies. The file name HAS TO BE <code class="language-plaintext highlighter-rouge">dependencies.gradle</code>, otherwise the solution will not work. (<code class="language-plaintext highlighter-rouge">version.gradle</code> is also not supported!)</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">ext</span> <span class="o">{</span>
+    <span class="c1">// -- PLUGINS</span>
+    <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s2">"2.5.5"</span>
+    <span class="n">springDependencyManagementVersion</span> <span class="o">=</span> <span class="s2">"1.0.11.RELEASE"</span>
+	<span class="o">....</span>
+
+    <span class="c1">//-- DEPENDENCIES</span>
+	 <span class="o">....</span>  
+	 <span class="n">springFoxBootVersion</span> <span class="o">=</span> <span class="s2">"3.0.0"</span>
+    <span class="n">hibernateVersion</span> <span class="o">=</span> <span class="s2">"5.4.31.Final"</span>
+    <span class="n">c3p0Version</span> <span class="o">=</span> <span class="s2">"0.9.5.5"</span>
+    <span class="n">postgresVersion</span> <span class="o">=</span> <span class="s2">"42.2.10"</span>
+    <span class="o">....</span> 
+    <span class="n">supportDependencies</span> <span class="o">=</span> <span class="o">[</span>
+            <span class="n">springfox_boot_starter</span>            <span class="o">:</span> <span class="s2">"io.springfox:springfox-boot-starter:$springFoxBootVersion"</span><span class="o">,</span>
+            <span class="n">hibernate_entitymanager</span>           <span class="o">:</span> <span class="s2">"org.hibernate:hibernate-entitymanager:$hibernateVersion"</span><span class="o">,</span>
+            <span class="n">hibernate_core</span>                    <span class="o">:</span> <span class="s2">"org.hibernate:hibernate-core:$hibernateVersion"</span><span class="o">,</span>
+            <span class="n">c3p0</span>                              <span class="o">:</span> <span class="s2">"com.mchange:c3p0:$c3p0Version"</span>
+            <span class="n">hibernate_java8</span>                   <span class="o">:</span> <span class="s2">"org.hibernate:hibernate-java8:$hibernateVersion"</span><span class="o">,</span>
+            <span class="n">postgresql</span>                        <span class="o">:</span> <span class="s2">"org.postgresql:postgresql:$postgresVersion"</span><span class="o">,</span>
+            <span class="o">....</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+
+
+</code></pre></div></div>
+
+<ul>
+  <li>Modify <code class="language-plaintext highlighter-rouge">build.gradle</code> to use <code class="language-plaintext highlighter-rouge">dependencies.gradle</code></li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">'dependencies.gradle'</span>
+<span class="o">}</span>
+<span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s1">'org.springframework.boot'</span> <span class="n">version</span> <span class="s2">"${springBootVersion}"</span>
+    <span class="n">id</span> <span class="s1">'io.spring.dependency-management'</span> <span class="n">version</span> <span class="s2">"${springDependencyManagementVersion}"</span>
+    <span class="o">....</span>
+<span class="o">}</span>
+<span class="n">dependencies</span> <span class="o">{</span>
+	<span class="o">....</span>
+    <span class="n">implementation</span> <span class="n">supportDependencies</span><span class="o">.</span><span class="na">springfox_boot_starter</span>
+    <span class="n">implementation</span> <span class="n">supportDependencies</span><span class="o">.</span><span class="na">hibernate_entitymanager</span>
+    <span class="n">implementation</span> <span class="n">supportDependencies</span><span class="o">.</span><span class="na">hibernate_core</span>
+    <span class="n">implementation</span> <span class="n">supportDependencies</span><span class="o">.</span><span class="na">c3p0</span>
+   <span class="o">....</span>
+<span class="o">}</span>
+<span class="o">....</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>Add dependabot support with <code class="language-plaintext highlighter-rouge">.github/dependabot.yml</code> file to the project.</li>
+</ul>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
+<span class="na">updates</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">package-ecosystem</span><span class="pi">:</span> <span class="s2">"</span><span class="s">gradle"</span> 
+    <span class="na">directory</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/"</span> 
+    <span class="na">schedule</span><span class="pi">:</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s2">"</span><span class="s">daily"</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>Tadaaaa.. On the next run or on a force run of dependency check, if there are updates you should see PRs opened by dependabot.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Dependabot is an amazing tool, to make sure your project gets latest dependencies. But the support of Gradle as compared to Maven is limited when dependencies are not maintained <code class="language-plaintext highlighter-rouge">build.gradle</code> or <code class="language-plaintext highlighter-rouge">settings.gradle</code>.</p>
+
+<p>If you dont want to maintain the versions in these two files, you can tweak your gradle files in a way that dependabot can scan the project and will find out the issues with the dependencies.</p>
+
+<p>Special Thanks to <a href="https://github.com/sumedhdeshpande">Sumedh</a>.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="https://dependabot.com/blog/gradle-support/">Dependabot</a></li>
+  <li><a href="https://github.com/dependabot/dependabot-core">Dependabot Code Repo</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#dependabot" class="page__taxonomy-item p-category" rel="tag">dependabot</a><span class="sep">, </span>
+    
+      <a href="/tags/#dependency" class="page__taxonomy-item p-category" rel="tag">dependency</a><span class="sep">, </span>
+    
+      <a href="/tags/#github" class="page__taxonomy-item p-category" rel="tag">github</a><span class="sep">, </span>
+    
+      <a href="/tags/#gradle" class="page__taxonomy-item p-category" rel="tag">gradle</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#posts" class="page__taxonomy-item p-category" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-10-19T00:00:00+00:00">October 19, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+to+configure+Dependabot+with+Gradle%20https%3A%2F%2Fcricketsamya.github.io%2Fposts%2Fdependabot-with-gradle%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcricketsamya.github.io%2Fposts%2Fdependabot-with-gradle%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcricketsamya.github.io%2Fposts%2Fdependabot-with-gradle%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/first-post/" class="pagination--pager" title="Post: First Post
+">Previous</a>
+    
+    
+      <a href="/posts/github-and-pr-template/" class="pagination--pager" title="GitHub Pull Request Template a faster way to document a PR
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/log4j-to-logback/" rel="permalink">Log4j to Logback migration? Good idea or not?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/github-actions-from-jenkins/" rel="permalink">Stable CI/CD is not a Myth, From Nexus-Jenkins to Github Packages-Actions
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/testcontainers/" rel="permalink">Testcontainers with Spring Boot and Java 11/17
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/github-and-pr-template/" rel="permalink">GitHub Pull Request Template a faster way to document a PR
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Sameer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
