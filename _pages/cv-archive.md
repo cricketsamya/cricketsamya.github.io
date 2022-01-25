@@ -13,7 +13,7 @@ _Senior Software Engineer based in Berlin, Germany_ <br>
 
 ## 👨‍💻 Technical Experience
 
-**Senior Software Engineer** @ [Tignum GmbH](https://tignum.com/) _(Jan 2018 - Present)_ <br>
+**Senior Software Engineer** @ [Tignum GmbH](https://tignum.com/) _(Jan 2018 - Feb 2022)_ <br>
 Teach and coach tangible solutions to enhance the personal readiness of leaders and their teams.
  - Development of Spring Boot and Spring MVC Web Services (REST APIs) using J2EE Components
  - Project has interaction of REST APIs to external applications
