@@ -45,6 +45,7 @@ Logback is a logging framework for mostly Java based applications, and a success
 ## How to use Logback?
 
 - Add the logback dependencies. 
+Maven:
 
 ```
 <dependency>
@@ -66,6 +67,12 @@ Logback is a logging framework for mostly Java based applications, and a success
 </dependency>
 ```
 
+Gradle:
+```
+implementation("org.slf4j:slf4j-api:${slf4j-version}")
+implementation("ch.qos.logback:logback-core:${logback-version}")
+implementation("ch.qos.logback:logback-classic:${logback-version}")
+```
 If JAR files are needed locally then download them from logback [download](https://logback.qos.ch/download.html) page.
 
 ***If the application is based on Spring boot then, no additional dependencies are required as Spring boot provides log back support.***
