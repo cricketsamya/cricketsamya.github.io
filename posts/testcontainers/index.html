@@ -1,0 +1,804 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Testcontainers with Spring Boot and Java 11/17 - My Personal Space 🛰️</title>
+<meta name="description" content="This is my personal space 🛰️, where I would love share my experience and my knowledge. Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.">
+
+
+  <meta name="author" content="Sameer">
+  
+  <meta property="article:author" content="Sameer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="My Personal Space 🛰️">
+<meta property="og:title" content="Testcontainers with Spring Boot and Java 11/17">
+<meta property="og:url" content="https://cricketsamya.github.io/posts/testcontainers/">
+
+
+  <meta property="og:description" content="This is my personal space 🛰️, where I would love share my experience and my knowledge. Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.">
+
+
+
+  <meta property="og:image" content="https://cricketsamya.github.io/assets/images/banner-g497249795_1920.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-12-07T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://cricketsamya.github.io/posts/testcontainers/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Sameer",
+      "url": "https://cricketsamya.github.io/",
+      "sameAs": ["https://twitter.com/","https://github.com/"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="My Personal Space 🛰️ Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon//apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon//favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon//site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          My Personal Space 🛰️
+          <span class="site-subtitle">Get to know me!</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://github.com/cricketsamya">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/assets/images/banner-g497249795_1920.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Testcontainers with Spring Boot and Java 11/17
+
+        
+      </h1>
+      
+        <p class="page__lead">
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Photo credit: <a href="https://pixabay.com/"><strong>Pixabay</strong></a>
+</span>
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://cricketsamya.github.io/">
+        <img src="/assets/images/bio-photo.png" alt="Sameer" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://cricketsamya.github.io/" itemprop="url">Sameer</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Berlin, Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cricketsamya" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/sameerkulkarni30/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/sameer_travelphotography/" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/cricketsamya" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="mailto:mail@sameerkulkarni.de" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Testcontainers with Spring Boot and Java 11/17">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-12-07T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="what-are-testcontainers">What are Testcontainers?</h2>
+
+<p>Testcontainers is a JVM library that allows users to run and manage Docker images and control them from Java code.
+The integration test additionally runs external components as real Docker containers.</p>
+
+<ul>
+  <li><strong>Databases</strong> - Run PostgreSQL as a Docker image</li>
+  <li><strong>Mocked HTTP server</strong> - HTTP services by using MockServer or WireMock Docker images</li>
+  <li><strong>Redis</strong> - run real Redis as a Docker image,</li>
+  <li><strong>Message Brokers</strong> - RabbitMQ</li>
+  <li><strong>AWS -</strong> S3, DynamoDB etc</li>
+  <li>Any other <strong>application</strong> that can be run as a Docker image</li>
+</ul>
+
+<h2 id="how-to-use">How to use?</h2>
+
+<ul>
+  <li>Setup : Spring Boot and Junit 5</li>
+  <li>Dependency to testImplementation “org.testcontainers:postgresql:1.16.2” and testImplementation “org.testcontainers:junit-jupiter:1.16.2”</li>
+  <li>And then some wireing to start testcontainers and link them to the test context so that integration tests knows where to look for the containers.</li>
+</ul>
+
+<h2 id="example-abstract-class-for-setup">Example Abstract Class for setup</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.test</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.test.context.SpringBootTest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContextInitializer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.ConfigurableApplicationContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.PropertySource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.ActiveProfiles</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.ContextConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.support.TestPropertySourceUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.containers.PostgreSQLContainer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.ext.ScriptUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.jdbc.JdbcDatabaseDelegate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.junit.jupiter.Testcontainers</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.shaded.com.fasterxml.jackson.databind.SerializationFeature</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">post</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">put</span><span class="o">;</span>
+
+
+<span class="nd">@Testcontainers</span>
+<span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="nc">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">RANDOM_PORT</span><span class="o">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="o">{</span><span class="n">com</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">Application</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+<span class="nd">@ActiveProfiles</span><span class="o">(</span><span class="nc">AbstractBaseIntergrationTestConfiguration</span><span class="o">.</span><span class="na">ACTIVE_PROFILE_NAME_TEST</span><span class="o">)</span>
+<span class="nd">@AutoConfigureTestDatabase</span><span class="o">(</span><span class="n">replace</span> <span class="o">=</span> <span class="nc">AutoConfigureTestDatabase</span><span class="o">.</span><span class="na">Replace</span><span class="o">.</span><span class="na">NONE</span><span class="o">)</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">initializers</span> <span class="o">=</span> <span class="nc">AbstractBaseIntergrationTestConfiguration</span><span class="o">.</span><span class="na">DockerPostgreDataSourceInitializer</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractBaseIntergrationTestConfiguration</span> <span class="o">{</span>
+
+    <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">JDBC_URL</span> <span class="o">=</span> <span class="s">"jdbc.url="</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">JDBC_USERNAME</span> <span class="o">=</span> <span class="s">"jdbc.username="</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">JDBC_PASSWORD</span> <span class="o">=</span> <span class="s">"jdbc.password="</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">JDBC_DRIVER_CLASS_NAME_ORG_POSTGRESQL_DRIVER</span> <span class="o">=</span> <span class="s">"jdbc.driverClassName=org.postgresql.Driver"</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ACTIVE_PROFILE_NAME_TEST</span> <span class="o">=</span> <span class="s">"TestContainerTests"</span><span class="o">;</span>
+
+    <span class="c1">//--</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">PostgreSQLContainer</span><span class="o">&lt;?&gt;</span> <span class="n">postgreDBContainer</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="nc">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">().</span><span class="na">disable</span><span class="o">(</span><span class="nc">SerializationFeature</span><span class="o">.</span><span class="na">FAIL_ON_EMPTY_BEANS</span><span class="o">);</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="c1">// Init DB Script here</span>
+        <span class="n">postgreDBContainer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PostgreSQLContainer</span><span class="o">&lt;&gt;(</span><span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">POSTGRESQL_IMAGE</span><span class="o">);</span>
+        <span class="n">postgreDBContainer</span>
+                <span class="o">.</span><span class="na">withInitScript</span><span class="o">(</span><span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">INIT_DB_SCRIPT</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withDatabaseName</span><span class="o">(</span><span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">DB_NAME</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withUsername</span><span class="o">(</span><span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">DB_USERNAME</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withPassword</span><span class="o">(</span><span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">DB_PASSWORD</span><span class="o">);</span>
+
+        <span class="n">postgreDBContainer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="kt">var</span> <span class="n">containerDelegate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JdbcDatabaseDelegate</span><span class="o">(</span><span class="n">postgreDBContainer</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+
+        <span class="c1">// Adding Database scripts here</span>
+        <span class="nc">ScriptUtils</span><span class="o">.</span><span class="na">runInitScript</span><span class="o">(</span><span class="n">containerDelegate</span><span class="o">,</span> <span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">MISSING_TABLES_SQL</span><span class="o">);</span>
+        <span class="nc">ScriptUtils</span><span class="o">.</span><span class="na">runInitScript</span><span class="o">(</span><span class="n">containerDelegate</span><span class="o">,</span> <span class="nc">IntegrationTestConstants</span><span class="o">.</span><span class="na">SAMPLE_DATA_SQL</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// This class adds the DB properties to Testcontainers.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">DockerPostgreDataSourceInitializer</span> <span class="kd">implements</span> <span class="nc">ApplicationContextInitializer</span><span class="o">&lt;</span><span class="nc">ConfigurableApplicationContext</span><span class="o">&gt;</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="nc">ConfigurableApplicationContext</span> <span class="n">applicationContext</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="nc">TestPropertySourceUtils</span><span class="o">.</span><span class="na">addInlinedPropertiesToEnvironment</span><span class="o">(</span>
+                    <span class="n">applicationContext</span><span class="o">,</span>
+                    <span class="no">JDBC_DRIVER_CLASS_NAME_ORG_POSTGRESQL_DRIVER</span><span class="o">,</span>
+                    <span class="no">JDBC_URL</span> <span class="o">+</span> <span class="n">postgreDBContainer</span><span class="o">.</span><span class="na">getJdbcUrl</span><span class="o">(),</span>
+                    <span class="no">JDBC_USERNAME</span> <span class="o">+</span> <span class="n">postgreDBContainer</span><span class="o">.</span><span class="na">getUsername</span><span class="o">(),</span>
+                    <span class="no">JDBC_PASSWORD</span> <span class="o">+</span> <span class="n">postgreDBContainer</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="how-to-write-a-test">How to write a test?</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">checkIfUserExistInIdealCase</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="nc">JSONObject</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">();</span>
+  
+  <span class="n">request</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"email"</span><span class="o">,</span> <span class="s">"abc@test.com"</span><span class="o">);</span>
+  
+  <span class="kd">final</span> <span class="nc">MockHttpServletRequestBuilder</span> <span class="n">postObject</span> <span class="o">=</span> <span class="n">getPostRequestExecutorBuilder</span><span class="o">(</span><span class="s">"http://localhost:8080/v1/checkemail/"</span><span class="o">,</span> <span class="nc">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">());</span>
+  <span class="kd">final</span> <span class="nc">MvcResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">postObject</span><span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">toString</span><span class="o">())).</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">()).</span><span class="na">andReturn</span><span class="o">();</span>
+  <span class="kd">final</span> <span class="nc">String</span> <span class="n">content</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getContentAsString</span><span class="o">();</span>
+  
+  <span class="kd">final</span> <span class="nc">SyncResponseDto</span> <span class="n">responseDto</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">content</span><span class="o">,</span> <span class="nc">SyncResponseDto</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">responseDto</span><span class="o">.</span><span class="na">getResponseReturnCode</span><span class="o">()).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="nc">ResponseReturnCode</span><span class="o">.</span><span class="na">USER</span><span class="err">\</span><span class="n">_EXIST</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="advantages">Advantages</h2>
+
+<ul>
+  <li>Run Integration Tests offline.</li>
+  <li>You run tests against real components, PostgreSQL database instead of the H2 database.</li>
+  <li>You can mock AWS services.</li>
+  <li>Implementation and tests can be written by developers same time when raising a PR.</li>
+  <li>Multiple containers can be added and it’s consistent across all developer machines. Same versions etc and runs without any efforts with GitHub actions.
+    <h2 id="disadvantages">Disadvantages</h2>
+  </li>
+  <li>The main limitation is, that containers cannot be reused between test classes.</li>
+  <li>Adding “one more” external dependency.</li>
+  <li>Takes a bit more time than usual to start a container, 4 - 5 seconds for Postgres VS 0.5 seconds for H2.</li>
+  <li>When running locally, local machine should be powerful enough too ;)</li>
+  <li>More RAM, More Power as multiple containers can be run.</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="https://www.testcontainers.org/">Testcontainer</a></li>
+  <li><a href="https://github.com/testcontainers/testcontainers-java">Test-Container Java</a></li>
+  <li><a href="https://www.baeldung.com/spring-boot-testcontainers-integration-test">Testcontainer Example</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#docker" class="page__taxonomy-item p-category" rel="tag">docker</a><span class="sep">, </span>
+    
+      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">java</a><span class="sep">, </span>
+    
+      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">spring</a><span class="sep">, </span>
+    
+      <a href="/tags/#springboot" class="page__taxonomy-item p-category" rel="tag">springboot</a><span class="sep">, </span>
+    
+      <a href="/tags/#testcontainers" class="page__taxonomy-item p-category" rel="tag">testcontainers</a><span class="sep">, </span>
+    
+      <a href="/tags/#yaml" class="page__taxonomy-item p-category" rel="tag">yaml</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#posts" class="page__taxonomy-item p-category" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-12-07T00:00:00+00:00">December 7, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Testcontainers+with+Spring+Boot+and+Java+11%2F17%20https%3A%2F%2Fcricketsamya.github.io%2Fposts%2Ftestcontainers%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcricketsamya.github.io%2Fposts%2Ftestcontainers%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcricketsamya.github.io%2Fposts%2Ftestcontainers%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/github-and-pr-template/" class="pagination--pager" title="GitHub Pull Request Template a faster way to document a PR
+">Previous</a>
+    
+    
+      <a href="/posts/github-actions-from-jenkins/" class="pagination--pager" title="Stable CI/CD is not a Myth, From Nexus-Jenkins to Github Packages-Actions
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/log4j-to-logback/" rel="permalink">Log4j to Logback migration? Good idea or not?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/github-actions-from-jenkins/" rel="permalink">Stable CI/CD is not a Myth, From Nexus-Jenkins to Github Packages-Actions
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/github-and-pr-template/" rel="permalink">GitHub Pull Request Template a faster way to document a PR
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/dependabot-with-gradle/" rel="permalink">How to configure Dependabot with Gradle
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Sameer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

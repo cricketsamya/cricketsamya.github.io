@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://cricketsamya.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://cricketsamya.github.io/" rel="alternate" type="text/html" /><updated>2022-09-28T17:55:26+00:00</updated><id>https://cricketsamya.github.io/feed.xml</id><title type="html">My Personal Space 🛰️</title><subtitle>This is my personal space 🛰️, where I would love share my experience and my knowledge. Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience.</subtitle><author><name>Sameer</name></author><entry><title type="html">Log4j to Logback migration? Good idea or not?</title><link href="https://cricketsamya.github.io/posts/log4j-to-logback/" rel="alternate" type="text/html" title="Log4j to Logback migration? Good idea or not?" /><published>2022-01-25T00:00:00+00:00</published><updated>2022-01-25T00:00:00+00:00</updated><id>https://cricketsamya.github.io/posts/log4j-to-logback</id><content type="html" xml:base="https://cricketsamya.github.io/posts/log4j-to-logback/">&lt;h2 id=&quot;new-buzz-word-log4j&quot;&gt;New Buzz word Log4j&lt;/h2&gt;
+
+&lt;p&gt;By end of 2021, there came a new buzz word “LOG4J”. People who don’t know what log4j is started to talk about it. Jokes a part, log4j teared the world apart because of the security vulnerability  that were exploited by Hackers. This security vulnerability was allowing attackers to execute malicious code remotely on a target computer. Which means hackers can easily steal data, plant malware, or take control of the target computer via the Internet.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-overcome-this-issue&quot;&gt;How to overcome this issue&lt;/h2&gt;
+&lt;h3 id=&quot;solution-1&quot;&gt;Solution 1&lt;/h3&gt;
+
+&lt;p&gt;Update the library usage to the latest released version of log4j, where Apache team has fixed the “known” vulnerabilities.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution-2&quot;&gt;Solution 2&lt;/h3&gt;
+
+&lt;p&gt;Switch to different logger e.g. Logback&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-logback&quot;&gt;What is Logback?&lt;/h2&gt;
+&lt;p&gt;Logback is a logging framework for mostly Java based applications, and a successor to the popular log4j project. Logback has many improvements over log4j. Just for information, logback is very much like log4j as both the projects were founded by the same developers. Logback is very similar to log4j when it comes to usage.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-logback&quot;&gt;Why Logback?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Its very much like log4j, no extra knowledge need to use.&lt;/li&gt;
+  &lt;li&gt;As its very much similar to log4j, its easy to replace.&lt;/li&gt;
+  &lt;li&gt;Logback uses slf4j &lt;a href=&quot;https://logback.qos.ch/reasonsToSwitch.html&quot;&gt;natively&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Auto compression of log files.&lt;/li&gt;
+  &lt;li&gt;Many more.. Have a look at: &lt;a href=&quot;https://logback.qos.ch/reasonsToSwitch.html&quot;&gt;Reasons to switch&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-to-use-logback&quot;&gt;How to use Logback?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add the logback dependencies.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Maven:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.slf4j&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;slf4j-api&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;${slf4j-version}&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;ch.qos.logback&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;logback-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;${logback-version}&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;ch.qos.logback&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;logback-classic&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;${logback-version}&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Gradle:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;implementation(&quot;org.slf4j:slf4j-api:${slf4j-version}&quot;)
+implementation(&quot;ch.qos.logback:logback-core:${logback-version}&quot;)
+implementation(&quot;ch.qos.logback:logback-classic:${logback-version}&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If JAR files are needed locally then download them from logback &lt;a href=&quot;https://logback.qos.ch/download.html&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;If the application is based on Spring boot then, no additional dependencies are required as Spring boot provides log back support.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logback.xml&lt;/code&gt; file (logback-spring.xml in case of Spring boot) in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src\main\resources&lt;/code&gt;. 
+Sample &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logback.xml&lt;/code&gt; For more information about Logback configuration, check &lt;a href=&quot;https://logback.qos.ch/manual/configuration.html&quot;&gt;Link&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;configuration&amp;gt;
+
+    &amp;lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&amp;gt;
+        &amp;lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&amp;gt;
+            &amp;lt;Pattern&amp;gt;
+                %date{&quot;yyyy-MM-dd'T'HH:mm:ss,SSSXXX&quot;, UTC} - %yellow([tid:%t])[sid:%X{httpSessionId}][reqid:%X{reqId}] - %green(%level) %cyan([%c]) - %m%n
+            &amp;lt;/Pattern&amp;gt;
+        &amp;lt;/layout&amp;gt;
+    &amp;lt;/appender&amp;gt;
+
+    &amp;lt;appender name=&quot;appServerRollingFile&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&amp;gt;
+        &amp;lt;file&amp;gt;applogs/shpi-api.log&amp;lt;/file&amp;gt;
+        &amp;lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.FixedWindowRollingPolicy&quot;&amp;gt;
+            &amp;lt;fileNamePattern&amp;gt;applogs/$${date:yyyy-MMM}/shpi-api-%d{yyyy-MMM-dd}-%i.log.gz&amp;lt;/fileNamePattern&amp;gt;
+        &amp;lt;/rollingPolicy&amp;gt;
+
+        &amp;lt;triggeringPolicy class=&quot;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&quot;&amp;gt;
+            &amp;lt;maxFileSize&amp;gt;200MB&amp;lt;/maxFileSize&amp;gt;
+        &amp;lt;/triggeringPolicy&amp;gt;
+        &amp;lt;encoder&amp;gt;
+            &amp;lt;pattern&amp;gt;%date{&quot;yyyy-MM-dd'T'HH:mm:ss,SSSXXX&quot;, UTC} - [sid:%X{httpSessionId}][actor:%X{userId}][reqid:%X{reqId}] - %p [%c] - %m%n&amp;lt;/pattern&amp;gt;
+        &amp;lt;/encoder&amp;gt;
+    &amp;lt;/appender&amp;gt;
+
+    &amp;lt;root level=&quot;info&quot;&amp;gt;
+        &amp;lt;appender-ref ref=&quot;STDOUT&quot;/&amp;gt;
+        &amp;lt;appender-ref ref=&quot;appServerRollingFile&quot;/&amp;gt;
+    &amp;lt;/root&amp;gt;
+
+&amp;lt;/configuration&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;How to use LoggerFactory instance.
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.slf4j.Logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.slf4j.LoggerFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logger&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;LOG&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoggerFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLogger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ClassName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;LOG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;warn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Warn Test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-
+If migrating from Log4j to Logback use this translator tool from logback developers &lt;a href=&quot;https://logback.qos.ch/translator/&quot;&gt;Translator&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Idea behind use of logback is the recent issues with log4j which gave everyone a reality check, that now there is definite need of log4j alternative.
+May be now is the time to migrate!&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.baeldung.com/spring-boot-logging&quot;&gt;Spring boot and Logback&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://logback.qos.ch/&quot;&gt;Logback Project&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://logging.apache.org/log4j/2.x/&quot;&gt;Apache Log4j&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="log4j" /><category term="logger" /><category term="logback" /><category term="java" /><category term="logging" /><category term="ddos" /><category term="vulnerabilities" /></entry><entry><title type="html">Stable CI/CD is not a Myth, From Nexus-Jenkins to Github Packages-Actions</title><link href="https://cricketsamya.github.io/posts/github-actions-from-jenkins/" rel="alternate" type="text/html" title="Stable CI/CD is not a Myth, From Nexus-Jenkins to Github Packages-Actions" /><published>2022-01-11T00:00:00+00:00</published><updated>2022-01-11T00:00:00+00:00</updated><id>https://cricketsamya.github.io/posts/github-actions-from-jenkins</id><content type="html" xml:base="https://cricketsamya.github.io/posts/github-actions-from-jenkins/">&lt;p&gt;This article provides an overview and learnings about why migration from own hosted CI/CD to SaaS CI/CD, is a way to go!&lt;/p&gt;
+
+&lt;h2 id=&quot;lets-first-understand-the-history&quot;&gt;Let’s first understand the history&lt;/h2&gt;
+
+&lt;p&gt;Software Engineers from Generation X, Millennials generation must have at least once in their life worked with Jenkins (Back in time was Hudson). Java Stack CI/CD evolved around Jenkins. Most of us atleast once used Jenkins. And  Artifactory later Nexus perfectly complements each other.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-our-self-hosted-jenkins-and-nexus-setup-could-look-like&quot;&gt;How our Self-hosted Jenkins and Nexus setup could look like.&lt;/h2&gt;
+
+&lt;p&gt;Jenkins is mostly used for CI/CD, and in some cases as a Batch processor. To satisfy this requirement self hosted Jenkins instances running over AWS or self hosted pods on Kubernetes(K8S), mainly in MASTER -&amp;gt; SLAVE (agents) configuration is a correct choice.&lt;/p&gt;
+
+&lt;p&gt;Nexus instance can also be self hosted over AWS or with K8S.&lt;/p&gt;
+
+&lt;p&gt;Some of many problems with this setup and some solutions to fix some of them.&lt;/p&gt;
+
+&lt;h3 id=&quot;problem-1-security&quot;&gt;Problem 1. Security&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Solution 1: 1st approach to make it secure is to use, &lt;strong&gt;VPN&lt;/strong&gt;. Of course that makes it secure on the cost of performance plus overhead maintaining VPN instance as well.&lt;/li&gt;
+  &lt;li&gt;Solution 2: To over come Open VPN issues, Client Side Certificates can be used. This setup involved writing a small code that will create a certificate and pushing the information to the certificate repo. But maintaining the certificate is kind of painful task.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;problem-2-random-jenkins-restarts-auto-updates&quot;&gt;Problem 2. Random Jenkins restarts, auto updates&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Solution:  Disabling auto update feature.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;problem-3-outdated-plugins&quot;&gt;Problem 3. Outdated Plugins&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Solution: Jenkins community is not growing these days, as other communities so some the plugins are not maintained and they dont work with new versions of Jenkins. So sticking to outdated plugins makes sense.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;problem-4-pipeline-builds&quot;&gt;Problem 4. Pipeline builds&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Again maintenance and writing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jenkinsfile&lt;/code&gt; without much of documentation is kind of hard.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;problem-5-nexus-maintenance-is-nightmare&quot;&gt;Problem 5. Nexus maintenance is nightmare&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;DevOps team has to be own their toes , to patch and fix the Nexus instance, as storage could often be a issue. So storage has to be maintained manually. Plus deletion of old artifacts is also one more problem to tackle.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Last but not the least, Jenkins will fail when its needed the most. As most of the teams would rely on Jenkins for CI/CD these problems can grow exponentially and the maintenance causing DevOps precious time.&lt;/p&gt;
+
+&lt;p&gt;To make everyone’s life easier moving to &lt;strong&gt;GitHub Actions and GitHub Packages&lt;/strong&gt; could be a solution!&lt;/p&gt;
+
+&lt;h2 id=&quot;how-cicd-with-github-action-could-look-like&quot;&gt;How CI/CD with GitHub Action could look like.&lt;/h2&gt;
+
+&lt;p&gt;The advantage of migrating to GitHub Action is to use &lt;strong&gt;YAML&lt;/strong&gt; instead of different way of defining the Job with Jenkins. Those YAML files are maintained under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github&lt;/code&gt; folder under the respective project that gives the ownership of the flows to the Project/Module owner. Below are some sample workflows that can be defined.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Build Develop/Main&lt;/code&gt; - For manually building &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;develop&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Build PR&lt;/code&gt; - When ever a PR is raised for a merge on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;develop&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; then this workflow is executed. This is runs whenever there is commit on the branch.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Publish&lt;/code&gt; - After successful build of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;develop&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;, built jar is pushed to GitHub Packages.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Release Manual&lt;/code&gt; - Manually releasing &amp;amp; tagging a fixed version.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Auto Deploy API to DEV&lt;/code&gt; - After successful built of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;develop&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;, changes are deployed to DEVELOPMENT environment.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Deploy API to ENV&lt;/code&gt; - Manual Deployment of fixed version of API to different environments.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;some-learnings-after-migration-to-github-actions-and-packages&quot;&gt;Some Learnings after migration to GitHub Actions and Packages.&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Stable CI /CD is not a Myth!&lt;/li&gt;
+  &lt;li&gt;Now the project CI/CD is maintained by respective team, instead DevOps team.&lt;/li&gt;
+  &lt;li&gt;Saved a lot of developer time, troubleshoot the issues with Jenkins and Nexus.&lt;/li&gt;
+  &lt;li&gt;Saved resources as GitHub instance is used instead of self hosted.&lt;/li&gt;
+  &lt;li&gt;Cost effective, as most basic subscription of GitHub provides access to Actions and Packages.&lt;/li&gt;
+  &lt;li&gt;Stable and efficient as compared to Jenkins and Nexus.&lt;/li&gt;
+  &lt;li&gt;Large Marketplace.&lt;/li&gt;
+  &lt;li&gt;Large Developer community, more and more free actions (e.g - &lt;a href=&quot;https://github.com/rtCamp/action-slack-notify&quot;&gt;Slack Notification&lt;/a&gt; etc.) available.&lt;/li&gt;
+  &lt;li&gt;Very short migration time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Migration to GitHub Actions and Packages could save lot of frustration with Jenkins-Nexus combo. This will give you a chance to try out latest tools rather than being with old and outdated technologies. The process is may not be ideal for everyone, but it solves most of the issues with Jenkins.&lt;/p&gt;
+
+&lt;p&gt;As I said earlier, Stable CI/CD is not a Myth!&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.github.com/en/actions/learn-github-actions/migrating-from-jenkins-to-github-actions&quot;&gt;Migrating from Jenkins to GitHub Actions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions&quot;&gt;Introduction to GitHub Actions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.bitsrc.io/github-actions-or-jenkins-making-the-right-choice-for-you-9ac774684c8&quot;&gt;Github Actions or Jenkins? Making the Right Choice for You&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/rtCamp/action-slack-notify&quot;&gt;Slack Notification&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/marketplace?type=actions&quot;&gt;GitHub Marketplace&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.pexels.com/photo/aerial-photo-of-buildings-and-roads-681335/&quot;&gt;Photo by Aleksejs Bergmanis from Pexels&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="CI/CD" /><category term="pipeline" /><category term="development" /><category term="jenkins" /><category term="github" /><category term="build" /></entry><entry><title type="html">Testcontainers with Spring Boot and Java 11/17</title><link href="https://cricketsamya.github.io/posts/testcontainers/" rel="alternate" type="text/html" title="Testcontainers with Spring Boot and Java 11/17" /><published>2021-12-07T00:00:00+00:00</published><updated>2021-12-07T00:00:00+00:00</updated><id>https://cricketsamya.github.io/posts/testcontainers</id><content type="html" xml:base="https://cricketsamya.github.io/posts/testcontainers/">&lt;h2 id=&quot;what-are-testcontainers&quot;&gt;What are Testcontainers?&lt;/h2&gt;
+
+&lt;p&gt;Testcontainers is a JVM library that allows users to run and manage Docker images and control them from Java code.
+The integration test additionally runs external components as real Docker containers.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Databases&lt;/strong&gt; - Run PostgreSQL as a Docker image&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mocked HTTP server&lt;/strong&gt; - HTTP services by using MockServer or WireMock Docker images&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Redis&lt;/strong&gt; - run real Redis as a Docker image,&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Message Brokers&lt;/strong&gt; - RabbitMQ&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AWS -&lt;/strong&gt; S3, DynamoDB etc&lt;/li&gt;
+  &lt;li&gt;Any other &lt;strong&gt;application&lt;/strong&gt; that can be run as a Docker image&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-to-use&quot;&gt;How to use?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Setup : Spring Boot and Junit 5&lt;/li&gt;
+  &lt;li&gt;Dependency to testImplementation “org.testcontainers:postgresql:1.16.2” and testImplementation “org.testcontainers:junit-jupiter:1.16.2”&lt;/li&gt;
+  &lt;li&gt;And then some wireing to start testcontainers and link them to the test context so that integration tests knows where to look for the containers.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;example-abstract-class-for-setup&quot;&gt;Example Abstract Class for setup&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.context.SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.ApplicationContextInitializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.ConfigurableApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.PropertySource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.context.ActiveProfiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.context.ContextConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.context.support.TestPropertySourceUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.testcontainers.containers.PostgreSQLContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.testcontainers.ext.ScriptUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.testcontainers.jdbc.JdbcDatabaseDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.testcontainers.junit.jupiter.Testcontainers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.testcontainers.shaded.com.fasterxml.jackson.databind.SerializationFeature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.Optional&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;springframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;servlet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MockMvcRequestBuilders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;springframework&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;servlet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MockMvcRequestBuilders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&quot;nd&quot;&gt;@Testcontainers&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webEnvironment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;WebEnvironment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RANDOM_PORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ActiveProfiles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AbstractBaseIntergrationTestConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ACTIVE_PROFILE_NAME_TEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@AutoConfigureTestDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AutoConfigureTestDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;NONE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ContextConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initializers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractBaseIntergrationTestConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DockerPostgreDataSourceInitializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractBaseIntergrationTestConfiguration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JDBC_URL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jdbc.url=&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JDBC_USERNAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jdbc.username=&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JDBC_PASSWORD&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jdbc.password=&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JDBC_DRIVER_CLASS_NAME_ORG_POSTGRESQL_DRIVER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;jdbc.driverClassName=org.postgresql.Driver&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ACTIVE_PROFILE_NAME_TEST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TestContainerTests&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//--&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostgreSQLContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ObjectMapper&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectMapper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ObjectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;disable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SerializationFeature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;FAIL_ON_EMPTY_BEANS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Init DB Script here&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostgreSQLContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;POSTGRESQL_IMAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withInitScript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;INIT_DB_SCRIPT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withDatabaseName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DB_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DB_USERNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DB_PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;containerDelegate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JdbcDatabaseDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// Adding Database scripts here&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;ScriptUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runInitScript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;containerDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MISSING_TABLES_SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;ScriptUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;runInitScript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;containerDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IntegrationTestConstants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SAMPLE_DATA_SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// This class adds the DB properties to Testcontainers.&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DockerPostgreDataSourceInitializer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ApplicationContextInitializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConfigurableApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConfigurableApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;applicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+            &lt;span class=&quot;nc&quot;&gt;TestPropertySourceUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addInlinedPropertiesToEnvironment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;applicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;no&quot;&gt;JDBC_DRIVER_CLASS_NAME_ORG_POSTGRESQL_DRIVER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;no&quot;&gt;JDBC_URL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getJdbcUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt;
+                    &lt;span class=&quot;no&quot;&gt;JDBC_USERNAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt;
+                    &lt;span class=&quot;no&quot;&gt;JDBC_PASSWORD&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postgreDBContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;how-to-write-a-test&quot;&gt;How to write a test?&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;checkIfUserExistInIdealCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JSONObject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JSONObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;abc@test.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MockHttpServletRequestBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getPostRequestExecutorBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://localhost:8080/v1/checkemail/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Optional&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MvcResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isOk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResponse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getContentAsString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SyncResponseDto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;responseDto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SyncResponseDto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;responseDto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResponseReturnCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ResponseReturnCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_EXIST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;advantages&quot;&gt;Advantages&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Run Integration Tests offline.&lt;/li&gt;
+  &lt;li&gt;You run tests against real components, PostgreSQL database instead of the H2 database.&lt;/li&gt;
+  &lt;li&gt;You can mock AWS services.&lt;/li&gt;
+  &lt;li&gt;Implementation and tests can be written by developers same time when raising a PR.&lt;/li&gt;
+  &lt;li&gt;Multiple containers can be added and it’s consistent across all developer machines. Same versions etc and runs without any efforts with GitHub actions.
+    &lt;h2 id=&quot;disadvantages&quot;&gt;Disadvantages&lt;/h2&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The main limitation is, that containers cannot be reused between test classes.&lt;/li&gt;
+  &lt;li&gt;Adding “one more” external dependency.&lt;/li&gt;
+  &lt;li&gt;Takes a bit more time than usual to start a container, 4 - 5 seconds for Postgres VS 0.5 seconds for H2.&lt;/li&gt;
+  &lt;li&gt;When running locally, local machine should be powerful enough too ;)&lt;/li&gt;
+  &lt;li&gt;More RAM, More Power as multiple containers can be run.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.testcontainers.org/&quot;&gt;Testcontainer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/testcontainers/testcontainers-java&quot;&gt;Test-Container Java&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.baeldung.com/spring-boot-testcontainers-integration-test&quot;&gt;Testcontainer Example&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="testcontainers" /><category term="docker" /><category term="java" /><category term="yaml" /><category term="springboot" /><category term="spring" /></entry><entry><title type="html">GitHub Pull Request Template a faster way to document a PR</title><link href="https://cricketsamya.github.io/posts/github-and-pr-template/" rel="alternate" type="text/html" title="GitHub Pull Request Template a faster way to document a PR" /><published>2021-10-29T00:00:00+00:00</published><updated>2021-10-29T00:00:00+00:00</updated><id>https://cricketsamya.github.io/posts/github-and-pr-template</id><content type="html" xml:base="https://cricketsamya.github.io/posts/github-and-pr-template/">&lt;h2 id=&quot;why-do-you-need-a-pull-request-template&quot;&gt;Why do you need a Pull Request Template?&lt;/h2&gt;
+
+&lt;p&gt;Pull Request(PR) are often when raised are not properly documented. The best way to document them is to use a consistent template. The Template will help the team to document the PR in a concise way. PR reviewer gets an idea about what to expect in a PR.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-add-a-github-pr-template&quot;&gt;How to add a GitHub PR Template?&lt;/h2&gt;
+
+&lt;p&gt;Create a file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pull_request_template.md&lt;/code&gt; inside a root folder of the repository called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./github&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./github/pull_request_template.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This file is nothing but a template that will be shown on GitHub PR, when the PR is raised.&lt;/p&gt;
+
+&lt;h2 id=&quot;sample-template-file&quot;&gt;Sample Template file&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;## Description
+&amp;lt;!-- Please write a brief information about PR, what it contains, its purpose --&amp;gt;
+
+## Link to Jira
+&amp;lt;!-- If there is a ticket for this --&amp;gt;
+
+## Screenshots
+&amp;lt;!-- Please add screenshots --&amp;gt;
+
+## Testing
+&amp;lt;!-- How to test PR --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/pull_request_template.md&quot; download=&quot;&quot;&gt;Click to Download&lt;/a&gt; a sample PR Template.&lt;/p&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="pr" /><category term="pull_request" /><category term="github" /><category term="template" /></entry><entry><title type="html">How to configure Dependabot with Gradle</title><link href="https://cricketsamya.github.io/posts/dependabot-with-gradle/" rel="alternate" type="text/html" title="How to configure Dependabot with Gradle" /><published>2021-10-19T00:00:00+00:00</published><updated>2021-10-19T00:00:00+00:00</updated><id>https://cricketsamya.github.io/posts/dependabot-with-gradle</id><content type="html" xml:base="https://cricketsamya.github.io/posts/dependabot-with-gradle/">&lt;h2 id=&quot;what-is-a-github-dependabot&quot;&gt;What is a Github Dependabot?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dependabot.com/&quot;&gt;Dependabot&lt;/a&gt; provides a way to keep your dependencies up to date. Depending on the configuration, it checks your dependency files for outdated dependencies and opens PRs individually. Then based on requirement PRs can be reviewed and merged.&lt;/p&gt;
+
+&lt;h2 id=&quot;dependabot-with-gradle&quot;&gt;Dependabot with Gradle&lt;/h2&gt;
+
+&lt;p&gt;Dependabot has a limited &lt;a href=&quot;https://dependabot.com/blog/gradle-support/&quot;&gt;support&lt;/a&gt; for Gradle. Dependabot looks for a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; or a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; in your repo, then scans for outdated dependencies and creates a PR based on available updates.&lt;/p&gt;
+
+&lt;h3 id=&quot;issue&quot;&gt;Issue&lt;/h3&gt;
+
+&lt;p&gt;The issue aries when dependencies are maintained outside of these two files. Dependabot ONLY and ONLY scans &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt;. Most of the projects would follow this standard of having versions in these files, but remaining ones wont work at all.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution&quot;&gt;Solution&lt;/h3&gt;
+
+&lt;p&gt;There is a &lt;strong&gt;workaround&lt;/strong&gt; to this issue. Follow the steps explained below to tackle this issue.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies.gradle&lt;/code&gt; file to extract all the dependencies. The file name HAS TO BE &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies.gradle&lt;/code&gt;, otherwise the solution will not work. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;version.gradle&lt;/code&gt; is also not supported!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// -- PLUGINS&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;springBootVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;2.5.5&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;springDependencyManagementVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1.0.11.RELEASE&quot;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//-- DEPENDENCIES&lt;/span&gt;
+	 &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;  
+	 &lt;span class=&quot;n&quot;&gt;springFoxBootVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;3.0.0&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hibernateVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;5.4.31.Final&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;c3p0Version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;0.9.5.5&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;postgresVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;42.2.10&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;springfox_boot_starter&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;io.springfox:springfox-boot-starter:$springFoxBootVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;hibernate_entitymanager&lt;/span&gt;           &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.hibernate:hibernate-entitymanager:$hibernateVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;hibernate_core&lt;/span&gt;                    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.hibernate:hibernate-core:$hibernateVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c3p0&lt;/span&gt;                              &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.mchange:c3p0:$c3p0Version&quot;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;hibernate_java8&lt;/span&gt;                   &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.hibernate:hibernate-java8:$hibernateVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;postgresql&lt;/span&gt;                        &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;org.postgresql:postgresql:$postgresVersion&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Modify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'dependencies.gradle'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plugins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.springframework.boot'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;${springBootVersion}&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'io.spring.dependency-management'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;${springDependencyManagementVersion}&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;springfox_boot_starter&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hibernate_entitymanager&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hibernate_core&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supportDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;c3p0&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;....&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add dependabot support with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github/dependabot.yml&lt;/code&gt; file to the project.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;updates&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;package-ecosystem&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gradle&quot;&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/&quot;&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;daily&quot;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tadaaaa.. On the next run or on a force run of dependency check, if there are updates you should see PRs opened by dependabot.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Dependabot is an amazing tool, to make sure your project gets latest dependencies. But the support of Gradle as compared to Maven is limited when dependencies are not maintained &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you dont want to maintain the versions in these two files, you can tweak your gradle files in a way that dependabot can scan the project and will find out the issues with the dependencies.&lt;/p&gt;
+
+&lt;p&gt;Special Thanks to &lt;a href=&quot;https://github.com/sumedhdeshpande&quot;&gt;Sumedh&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dependabot.com/blog/gradle-support/&quot;&gt;Dependabot&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dependabot/dependabot-core&quot;&gt;Dependabot Code Repo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="dependabot" /><category term="gradle" /><category term="github" /><category term="dependency" /></entry><entry><title type="html">Post: First Post</title><link href="https://cricketsamya.github.io/posts/first-post/" rel="alternate" type="text/html" title="Post: First Post" /><published>2021-10-18T00:00:00+00:00</published><updated>2021-10-18T00:00:00+00:00</updated><id>https://cricketsamya.github.io/posts/first-post</id><content type="html" xml:base="https://cricketsamya.github.io/posts/first-post/">&lt;blockquote&gt;
+  &lt;p&gt;Welcome to my world!&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Sameer</name></author><category term="Posts" /><category term="first" /><category term="firstpost" /><category term="firstposts" /></entry></feed>
