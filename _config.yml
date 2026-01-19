@@ -1,267 +1,48 @@
-remote_theme             : "mmistakes/minimal-mistakes@4.26.2"
-minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+# Beautiful Jekyll theme (remote)
+remote_theme: daattali/beautiful-jekyll@6.0.1
 
-# Site Settings
-future                   : true
-locale                   : "en-US"
-title                    : "My Personal Space 🛰️"
-title_separator          : "-"
-subtitle                 : "Get to know me!"
-name                     : "Sameer"
-description              : "Senior Software Engineer in Berlin. I write about backend engineering (Java/Kotlin), cloud, and building reliable systems."
-url                      : "https://cricketsamya.github.io"
-baseurl                  : ""
-repository               : "cricketsamya/cricketsamya.github.io"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : #"/assets/images/apple-touch-icon.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : "My Personal Space 🛰️" # overrides the website title displayed in the masthead, use " " for no title
-breadcrumbs              : true # true, false (default)
-words_per_minute         : 200
-comments:
-  provider               : false # false (default), "disqus", "discourse", "facebook", "staticman", "utterances", "giscus", "custom"
-  utterances:
-    theme                : # "github-light" (default), "github-dark"
-    issue_term           : # "pathname" (default)
-atom_feed:
-  path                   : # blank (default) uses feed.xml
-search                   : true # true, false (default)
-search_full_content      : true # true, false (default)
-search_provider          : "lunr"
+# Basic site settings
+title: "My Personal Space"
+description: "Senior Software Engineer in Berlin. Writing about backend engineering (Java/Kotlin), cloud, and reliability."
+url: "https://cricketsamya.github.io"
+baseurl: ""
+timezone: Europe/Berlin
 
-# SEO Related
-google_site_verification :
-bing_site_verification   :
-yandex_site_verification :
+# Author / profile
+author: "Sameer Kulkarni"
+avatar: "/assets/images/bio-photo.png"
+round-avatar: true
 
-# Social Sharing
-facebook:
-  username               :
-  app_id                 :
-  publisher              :
-og_image                 : "/assets/images/bio-photo.png"
-# For specifying social profiles
-# - https://developers.google.com/structured-data/customize/social-profiles
-social:
-  type                   : Person
-  name                   : Sameer Kulkarni
-  links: # An array of links to social media profiles
-    - https://github.com/cricketsamya
-    - https://www.linkedin.com/in/sameerkulkarni30/
-    - https://twitter.com/cricketsamya
-    - https://instagram.com/sameer_travelphotography/
+# Navbar
+navbar-links:
+  About: "about"
+  CV: "cv"
+  Blog: ""
 
-# Analytics
-analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
-  google:
-    tracking_id          :
+# Social
+social-network-links:
+  email: "mail@sameerkulkarni.de"
+  github: "cricketsamya"
+  linkedin: "sameerkulkarni30"
+  instagram: "sameer_travelphotography"
+  twitter: "cricketsamya"
 
+# Footer
+footer-text: "© {{ site.time | date: '%Y' }} Sameer Kulkarni"
 
-# Site Author
-author:
-  name             : "Sameer"
-  avatar           : "/assets/images/bio-photo.png"
-  bio              : "Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience."
-  location         : "Berlin, Germany" 
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/cricketsamya"  
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sameerkulkarni30/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sameer_travelphotography/"      
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/cricketsamya"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:mail@sameerkulkarni.de"
-
-
-# Site Footer
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/cricketsamya"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sameerkulkarni30/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sameer_travelphotography/"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/cricketsamya"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:mail@sameerkulkarni.de"
-
-
-# Reading Files
-include:
-  - .htaccess
-  - _pages
-exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - vendor
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - assets/js/plugins
-  - assets/js/_main.js
-  - assets/js/vendor
-  - Capfile
-  - CHANGELOG
-  - config
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - log
-  - node_modules
-  - package.json
-  - Rakefile
-  - README
-  - tmp
-keep_files:
-  - .git
-  - .svn
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-
-# Liquid
-strict_front_matter: true
-liquid:
-  error_mode: strict
-
-# Conversion
+# Markdown + pagination
 markdown: kramdown
 highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
+permalink: /:categories/:year-:month-:day-:title/
+paginate: 8
 
-
-# Markdown Processing
-kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-
-
-# Sass/SCSS
-sass:
-  sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
-
-
-# Outputting
-permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
-timezone: Europe/Berlin # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
-
-# Plugins (previously gems:)
 plugins:
   - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
   - jekyll-feed
-  - jekyll-include-cache
+  - jekyll-sitemap
   - jekyll-remote-theme
 
-# mimic GitHub Pages with --safe
-whitelist:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jekyll-include-cache
-  - jekyll-remote-theme
-
-
-# Archives
-#  Type
-#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
-#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
-#  Path (examples)
-#  - Archive page should exist at path when using Liquid method or you can
-#    expect broken links (especially with breadcrumbs enabled)
-#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path>/my-awesome-category/index.html ~> path: /
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
-
-
-# HTML Compression
-# - http://jch.penibelst.de/
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
-
-
-# Collections
-collections:
-  cv:
-    output: true
-    permalink: /:collection/:path/
-
-
-# Defaults
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      share: true
-      related: true
-  # _cv
-  - scope:
-      path: ""
-      type: cv
-    values:
-      layout: single
-      author_profile: false
-      share: true
-  # pages
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: single
-      author_profile: false
-      toc: true
-      toc_sticky: true
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock

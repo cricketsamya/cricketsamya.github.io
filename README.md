@@ -1,6 +1,6 @@
 ### My Personal Space
 
-Personal website built with **Jekyll** using the **Minimal Mistakes** theme.
+Personal website built with **Jekyll** using the **Beautiful Jekyll** theme.
 
 ### Local development
 
@@ -13,7 +13,7 @@ Then open `http://localhost:4000`.
 
 ### Deploy (GitHub Pages)
 
-This repo includes a GitHub Actions workflow at `.github/workflows/pages.yml` that builds and deploys the site on every push to `main`/`master`.
+This repo includes a GitHub Actions workflow at `.github/workflows/jekyll.yml` that builds and deploys the site on every push to `main`/`master`.
 
 In GitHub:
 
@@ -21,4 +21,4 @@ In GitHub:
 
 ### Credits
 
-- [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) by [Michael Rose](https://github.com/mmistakes)
+- [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) by [Dean Attali](https://github.com/daattali)
