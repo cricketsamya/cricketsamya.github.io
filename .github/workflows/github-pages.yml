@@ -1,12 +1,12 @@
-name: Deploy
+name: Deploy (disabled - legacy)
 
 on:
-  push:
-    branches: master
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v2
       - uses: helaili/jekyll-action@2.0.5
