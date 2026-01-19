@@ -1,11 +1,15 @@
 # main links links
 main:
+  - title: "Home"
+    url: /
   - title: "About"
-    url: https://github.com/cricketsamya
+    url: /about/
   - title: "Posts"
     url: /year-archive/
   - title: "CV"
     url: /cv/
+  - title: "Tags"
+    url: /tags/
   #- title: "Sitemap"
   #  url: /sitemap/
   #- title: "Extra Menu Item 1"

@@ -1,5 +1,5 @@
-remote_theme             : "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+remote_theme             : "mmistakes/minimal-mistakes@4.26.2"
+minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 future                   : true
@@ -8,20 +8,17 @@ title                    : "My Personal Space 🛰️"
 title_separator          : "-"
 subtitle                 : "Get to know me!"
 name                     : "Sameer"
-description              : "This is my personal space 🛰️, where I would love share my experience and my knowledge. Currently, I am working as a Senior Software Engineer. I have 10+ years of Java Stack experience."
+description              : "Senior Software Engineer in Berlin. I write about backend engineering (Java/Kotlin), cloud, and building reliable systems."
 url                      : "https://cricketsamya.github.io"
 baseurl                  : ""
 repository               : "cricketsamya/cricketsamya.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : #"/assets/images/apple-touch-icon.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "My Personal Space 🛰️" # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
+breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "utterances", "giscus", "custom"   
-    appid                :
-    num_posts            : # 5 (default)
-    colorscheme          : # "light" (default), "dark"
+  provider               : false # false (default), "disqus", "discourse", "facebook", "staticman", "utterances", "giscus", "custom"
   utterances:
     theme                : # "github-light" (default), "github-dark"
     issue_term           : # "pathname" (default)
@@ -45,11 +42,13 @@ og_image                 : "/assets/images/bio-photo.png"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : Person
+  name                   : Sameer Kulkarni
   links: # An array of links to social media profiles
-    - https://twitter.com/
-    - https://github.com/
+    - https://github.com/cricketsamya
+    - https://www.linkedin.com/in/sameerkulkarni30/
+    - https://twitter.com/cricketsamya
+    - https://instagram.com/sameer_travelphotography/
 
 # Analytics
 analytics:
@@ -83,16 +82,17 @@ author:
 
 
 # Site Footer
+footer:
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/cricketsamya"  
+      url: "https://github.com/cricketsamya"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/sameerkulkarni30/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sameer_travelphotography/"      
+      url: "https://instagram.com/sameer_travelphotography/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/cricketsamya"
@@ -170,7 +170,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Europe/Berlin # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
@@ -180,6 +180,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-remote-theme
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -188,6 +189,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-remote-theme
 
 
 # Archives
@@ -254,3 +256,12 @@ defaults:
       layout: single
       author_profile: false
       share: true
+  # pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: false
+      toc: true
+      toc_sticky: true
